@@ -6,7 +6,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])){
     $req->execute(array($id));
     // $req->execute(array($_GET['id']));
     $billet = $req->fetch();
-    if (!$billet) header ('location: index.php'); // redirection en cas de modification de l'id ds l'url
 
     $req = $pdo->prepare('SELECT auteur, DATE_FORMAT(date_commentaire, "%d/%m/%Y") as date, DATE_FORMAT(date_commentaire, "%Hh%imin%ss") as heure, commentaire FROM commentaires WHERE id_billet = ?');
     $req->execute(array($id));
@@ -45,12 +44,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])){
             </div>
 
         <?php endforeach; ?>
-    </section>
-    <section>
-        <form action="commentaires_post.php" method="post">
-            <label for=""></label>
-
-        </form>
     </section>
 </body>
 </html>
